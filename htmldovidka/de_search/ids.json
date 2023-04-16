@@ -1,0 +1,14 @@
+{
+	"1": ["Ti... Advanced License is required!", "index.htm", []],
+	"2": ["1. Го... Advanced License is required!", "golovna.htm", []],
+	"3": ["1.1. Firs... Advanced License is required!", "first_subtopic.htm", [1]],
+	"4": ["2. Вхід та ... Advanced License is required!", "vkhid_ta_registratsiya.htm", []],
+	"5": ["3. Пр... Advanced License is required!", "profil.htm", []],
+	"6": ["4. Редагува... Advanced License is required!", "redaguvannya_profilyu.htm", []],
+	"7": ["5. Додаван... Advanced License is required!", "dodavannya_kartini.htm", []],
+	"8": ["6. Профіль інш... Advanced License is required!", "profil_inshogo_khudozhnika_.htm", []],
+	"9": ["7. Сорт... Advanced License is required!", "sortuvannya_.htm", []],
+	"10": ["8. Га... Advanced License is required!", "galereya.htm", []],
+	"11": ["9. Профіл... Advanced License is required!", "profil_kartini_.htm", []],
+	"12": ["10. Гл... Advanced License is required!", "glosarij.htm", []]
+}

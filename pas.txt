@@ -1,0 +1,60 @@
+net stop http
+
+DROP DATABASE IF EXISTS `Soft`;
+
+CREATE DATABASE IF NOT EXISTS `Soft`;
+-- CHARACTER SET UTF8MB4
+-- COLLATE UTF8MB4_0900_AS_CS;
+
+USE `Soft`;
+
+-- Table `Attachments`
+
+DROP TABLE IF EXISTS `Attachments`;
+
+CREATE TABLE `Attachments` (
+    `ID`                    BIGINT UNSIGNED    NOT NULL     AUTO_INCREMENT,
+    `CreatedOn`             DATETIME           NOT NULL     COMMENT 'Use UTC time',
+    `CreatedByAccountID`    BIGINT UNSIGNED    NOT NULL,
+    `ContainerName`         VARCHAR(36)        NOT NULL     COMMENT 'GUID length is 36 characters',
+    `FileName`              VARCHAR(100)       NOT NULL,
+
+    CONSTRAINT    `PK_Attachment`                  PRIMARY KEY (`ID`),
+    CONSTRAINT    `UQ_ContainerNameAttachments`    UNIQUE (`ContainerName`)
+);
+
+-- Table `Accounts`
+
+DROP TABLE IF EXISTS `Accounts`;
+
+CREATE TABLE `Accounts` (
+    `ID`                     BIGINT UNSIGNED     NOT NULL         AUTO_INCREMENT,
+    `Role`                   TINYINT UNSIGNED    DEFAULT NULL     COMMENT 'Roles:\n 0 - NotAssigned,\n 1 - Student,\n 2 - Mentor,\n 4 - Admin,\n 8 - Secretary',
+    `FirstName`              VARCHAR(30)         NOT NULL,
+    `LastName`               VARCHAR(30)         NOT NULL,
+    `Email`                  VARCHAR(50)         NOT NULL,
+    `PasswordHash`           VARCHAR(64)         NOT NULL         COMMENT 'SHA265 output size is 256 bits or 64 characters',
+    `Salt`                   VARCHAR(32)         NOT NULL         COMMENT 'Standard salt size is 128 bits or 32 characters',
+    `IsActive`               BIT                 DEFAULT 1,
+    `ForgotPasswordToken`    VARCHAR(36)         DEFAULT NULL     COMMENT 'GUID length is 36 characters',
+    `ForgotTokenGenDate`     DATETIME            DEFAULT NULL     COMMENT 'Use UTC time',
+    `AvatarID`               BIGINT UNSIGNED     DEFAULT NULL,
+
+    CONSTRAINT    `PK_Account`           PRIMARY KEY (`ID`),
+    CONSTRAINT    `FK_AvatarAccounts`    FOREIGN KEY (`AvatarId`)    REFERENCES `Attachments` (`ID`),
+    CONSTRAINT    `UQ_EmailAccounts`     UNIQUE (`Email`),
+    CONSTRAINT    `UQ_AvatarAccounts`    UNIQUE (`AvatarID`)
+);
+
+
+-- Table `Themes`
+
+DROP TABLE IF EXISTS `Themes`;
+
+CREATE TABLE `Themes` (
+    `ID`      BIGINT UNSIGNED    NOT NULL     AUTO_INCREMENT,
+    `Name`    VARCHAR(100)       NOT NULL,
+
+    CONSTRAINT    `PK_Theme`         PRIMARY KEY (`ID`),
+    CONSTRAINT    `UQ_NameThemes`    UNIQUE (`Name`)
+);

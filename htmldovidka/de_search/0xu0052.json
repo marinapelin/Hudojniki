@@ -1,0 +1,7 @@
+[
+	{ "s": "REALISM", "p": [12] },
+	{ "s": "REGISTER", "p": [4, 12] },
+	{ "s": "RENAISSANCE", "p": [12, 7] },
+	{ "s": "ROCOCO", "p": [12, 7] },
+	{ "s": "ROMANTICISM", "p": [12, 7] }
+]
